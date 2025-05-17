@@ -1,159 +1,216 @@
-<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Me - Dev</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #0f0f0f;
-  color: #eaeaea;
-  min-height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f0f0f;
+      color: #eaeaea;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
 
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
 
-.profile-tag,
-.card,
-.current-activity {
-  position: relative;
-  z-index: 1;
-}
+    .profile-tag,
+    .card,
+    .current-activity {
+      position: relative;
+      z-index: 1;
+    }
 
-.profile-tag {
-  font-size: 1rem;
-  color: #aaa;
-  margin: 2rem auto 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  text-align: center;
-}
+    .profile-tag {
+      font-size: 1rem;
+      color: #aaa;
+      margin: 2rem auto 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-align: center;
+    }
 
-.card {
-  max-width: 700px;
-  margin: auto;
-  padding: 2.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: box-shadow 0.3s ease;
-  text-align: center;
-}
+    .card {
+      max-width: 700px;
+      margin: auto;
+      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: box-shadow 0.3s ease;
+      text-align: center;
+      opacity: 0; /* Initial state for fade-in */
+      transform: translateY(20px); /* Initial state for slide-up */
+      transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+    }
 
-.card:hover {
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-}
+    body.loaded .card {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-h1 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #00fff7;
-  margin-bottom: 1.5rem;
-}
+    .card:hover {
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    }
 
-p {
-  font-size: 1rem;
-  line-height: 1.7;
-  margin: 0.7rem 0;
-  color: #e0e0e0;
-}
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #00fff7;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+    }
 
-.highlight {
-  color: #00fff7;
-  font-weight: 600;
-}
+    body.loaded h1 {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.social-icons {
-  margin-top: 2rem;
-}
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0.7rem 0;
+      color: #e0e0e0;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+    }
 
-.social-icons a {
-  margin: 0 15px;
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
+    body.loaded p {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.social-icons a:hover {
-  transform: scale(1.2);
-}
+    .highlight {
+      color: #00fff7;
+      font-weight: 600;
+    }
 
-.icon {
-  width: 32px;
-  height: 32px;
-  filter: grayscale(100%) brightness(150%);
-}
+    .social-icons {
+      margin-top: 2rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease 0.4s, transform 0.5s ease 0.4s;
+    }
 
-.current-activity {
-  margin-top: 2rem;
-  font-size: 1rem;
-  color: #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    body.loaded .social-icons {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.current-activity img {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-}
+    .social-icons a {
+      margin: 0 15px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
 
-@media (max-width: 600px) {
-  .card {
-    padding: 1.5rem;
-  }
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
 
-  h1 {
-    font-size: 2rem;
-  }
+    .icon {
+      width: 32px;
+      height: 32px;
+      filter: grayscale(100%) brightness(150%);
+      transition: filter 0.3s ease;
+    }
 
-  .icon {
-    width: 28px;
-    height: 28px;
-  }
-}
+    .social-icons a:hover .icon {
+      filter: grayscale(0%) brightness(100%) sepia(100%) hue-rotate(170deg) saturate(300%);
+    }
 
+    .current-activity {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
+    }
+
+    body.loaded .current-activity {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .current-activity img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    .current-activity-text {
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+    }
+
+    .card p i {
+      margin-right: 0.5rem;
+      color: #00fff7; /* Match highlight color */
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 1.5rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .icon {
+        width: 28px;
+        height: 28px;
+      }
+    }
   </style>
 </head>
-<body>
+<body class="loading">
   <div id="particles-js"></div>
   <div class="profile-tag">Profile</div>
   <div class="card">
     <h1>About Me</h1>
     <p>Hello, I'm <span class="highlight">Dev</span> — a passionate tech enthusiast specializing in digital solutions and performance enhancement.</p>
     <p>I offer services like:</p>
-    <p>- <span class="highlight">PC Optimization & Boosting</span></p>
-    <p>- <span class="highlight">UI/UX Customization</span></p>
-    <p>- <span class="highlight">Basic Automation Scripting</span></p>
-    <p>- <span class="highlight">Ethical Web & Game Cracking (for learning)</span></p>
-    <p>- <span class="highlight">Photo & Video Editing</span></p><div class="social-icons">
-  <a href="https://www.instagram.com/dev_xitado0110?igsh=MmhrOGVtazZ1OTBx" target="_blank" title="Instagram">
-    <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" class="icon" alt="Instagram"/>
-  </a>
-  <a href="https://www.facebook.com/share/1DBnJceRuw/" target="_blank" title="Facebook">
-    <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" class="icon" alt="Facebook"/>
-  </a>
-  <a href="https://discord.gg/8xYxhGfE" target="_blank" title="Discord">
-    <img src="https://img.icons8.com/ios-filled/50/ffffff/discord-logo.png" class="icon" alt="Discord"/>
-  </a>
-</div>
-
-  </div>  <div class="current-activity" id="currentActivity"></div>  <script>
+    <p><i class="fa-solid fa-rocket"></i> <span class="highlight">PC Optimization & Boosting</span></p>
+    <p><i class="fa-solid fa-paint-brush"></i> <span class="highlight">UI/UX Customization</span></p>
+    <p><i class="fa-solid fa-code"></i> <span class="highlight">Basic Automation Scripting</span></p>
+    <p><i class="fa-solid fa-unlock"></i> <span class="highlight">Ethical Web & Game Cracking (for learning)</span></p>
+    <p><i class="fa-solid fa-image"></i> <span class="highlight">Photo & Video Editing</span></p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/dev_xitado0110?igsh=MmhrOGVtazZ1OTBx" target="_blank" title="Instagram">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" class="icon" alt="Instagram"/>
+      </a>
+      <a href="https://www.facebook.com/share/1DBnJceRuw/" target="_blank" title="Facebook">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" class="icon" alt="Facebook"/>
+      </a>
+      <a href="https://discord.gg/8xYxhGfE" target="_blank" title="Discord">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/discord-logo.png" class="icon" alt="Discord"/>
+      </a>
+    </div>
+  </div>
+  <div class="current-activity" id="currentActivity"></div>
+  <script>
     const activities = [
       { text: "Listening to music", icon: "https://img.icons8.com/ios-filled/24/ffffff/headphones.png" },
       { text: "Playing Fortnite", icon: "https://img.icons8.com/color/24/fortnite.png" },
@@ -163,10 +220,27 @@ p {
       { text: "Using MSI BlueStacks", icon: "https://img.icons8.com/color/24/bluestacks.png" }
     ];
 
-    const randomIndex = Math.floor(Math.random() * activities.length);
-    const activity = activities[randomIndex];
-    document.getElementById("currentActivity").innerHTML = `<img src="${activity.icon}" alt=""> ${activity.text}`;
-  </script>  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>  <script>
+    const currentActivityDiv = document.getElementById("currentActivity");
+
+    function updateActivity() {
+      const randomIndex = Math.floor(Math.random() * activities.length);
+      const activity = activities [randomIndex];
+      currentActivityDiv.innerHTML = `<img src="${activity.icon}" alt=""> <span class="current-activity-text">${activity.text}</span>`;
+    }
+
+    // Initial activity update
+    updateActivity();
+
+    // Set an interval to change the activity (optional)
+    // setInterval(updateActivity, 5000);
+
+    // Add a class to the body to trigger the animations after a short delay
+    setTimeout(() => {
+      document.body.classList.add('loaded');
+    }, 50); // Adjust the delay as needed
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
     particlesJS("particles-js", {
       "particles": {
         "number": {"value": 80, "density": {"enable": true, "value_area": 800}},
@@ -183,5 +257,6 @@ p {
       },
       "retina_detect": true
     });
-  </script></body>
+  </script>
+</body>
 </html>
