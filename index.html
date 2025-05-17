@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Me - Dev</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0f0f0f;
+  color: #eaeaea;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.profile-tag,
+.card,
+.current-activity {
+  position: relative;
+  z-index: 1;
+}
+
+.profile-tag {
+  font-size: 1rem;
+  color: #aaa;
+  margin: 2rem auto 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.card {
+  max-width: 700px;
+  margin: auto;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.card:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #00fff7;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0.7rem 0;
+  color: #e0e0e0;
+}
+
+.highlight {
+  color: #00fff7;
+  font-weight: 600;
+}
+
+.social-icons {
+  margin-top: 2rem;
+}
+
+.social-icons a {
+  margin: 0 15px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  filter: grayscale(100%) brightness(150%);
+}
+
+.current-activity {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current-activity img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="profile-tag">Profile</div>
+  <div class="card">
+    <h1>About Me</h1>
+    <p>Hello, I'm <span class="highlight">Dev</span> — a passionate tech enthusiast specializing in digital solutions and performance enhancement.</p>
+    <p>I offer services like:</p>
+    <p>- <span class="highlight">PC Optimization & Boosting</span></p>
+    <p>- <span class="highlight">UI/UX Customization</span></p>
+    <p>- <span class="highlight">Basic Automation Scripting</span></p>
+    <p>- <span class="highlight">Ethical Web & Game Cracking (for learning)</span></p>
+    <p>- <span class="highlight">Photo & Video Editing</span></p><div class="social-icons">
+  <a href="https://www.instagram.com/dev_xitado0110?igsh=MmhrOGVtazZ1OTBx" target="_blank" title="Instagram">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" class="icon" alt="Instagram"/>
+  </a>
+  <a href="https://www.facebook.com/share/1DBnJceRuw/" target="_blank" title="Facebook">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" class="icon" alt="Facebook"/>
+  </a>
+  <a href="https://discord.gg/8xYxhGfE" target="_blank" title="Discord">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/discord-logo.png" class="icon" alt="Discord"/>
+  </a>
+</div>
+
+  </div>  <div class="current-activity" id="currentActivity"></div>  <script>
+    const activities = [
+      { text: "Listening to music", icon: "https://img.icons8.com/ios-filled/24/ffffff/headphones.png" },
+      { text: "Playing Fortnite", icon: "https://img.icons8.com/color/24/fortnite.png" },
+      { text: "Using After Effects", icon: "https://img.icons8.com/color/24/adobe-after-effects.png" },
+      { text: "Using VS Code", icon: "https://img.icons8.com/color/24/visual-studio-code-2019.png" },
+      { text: "Playing GTA V", icon: "https://img.icons8.com/color/24/grand-theft-auto-v.png" },
+      { text: "Using MSI BlueStacks", icon: "https://img.icons8.com/color/24/bluestacks.png" }
+    ];
+
+    const randomIndex = Math.floor(Math.random() * activities.length);
+    const activity = activities[randomIndex];
+    document.getElementById("currentActivity").innerHTML = `<img src="${activity.icon}" alt=""> ${activity.text}`;
+  </script>  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {"value": 80, "density": {"enable": true, "value_area": 800}},
+        "color": {"value": "#00fff7"},
+        "shape": {"type": "circle"},
+        "opacity": {"value": 0.3, "random": true},
+        "size": {"value": 3, "random": true},
+        "line_linked": {"enable": true, "distance": 150, "color": "#00fff7", "opacity": 0.2, "width": 1},
+        "move": {"enable": true, "speed": 2}
+      },
+      "interactivity": {
+        "events": {"onhover": {"enable": true, "mode": "repulse"}},
+        "modes": {"repulse": {"distance": 100}}
+      },
+      "retina_detect": true
+    });
+  </script></body>
+</html>
